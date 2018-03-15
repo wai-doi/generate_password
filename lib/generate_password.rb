@@ -12,7 +12,7 @@ class Password
     raise 'too short' if len < 4
     raise 'too long'  if len > 32
 
-    @symbol = symbol
+    @symbol_use = symbol
     loop do
       password = len.times.map { |n| pick_one(len, n) }.join
       return password if check(password)
@@ -28,7 +28,7 @@ class Password
   end
 
   def usable_symbol?(len, n)
-    !@symbol || (n.zero? || n == len - 1)
+    !@symbol_use || (n.zero? || n == len - 1)
   end
 
   def check(str)
@@ -36,7 +36,7 @@ class Password
     return false if /(.)\1\1/ =~ str
 
     # confirm the str contains 1..2 symbols
-    @symbol ? satisfy_symbol_count?(str) : true
+    @symbol_use ? satisfy_symbol_count?(str) : true
   end
 
   def satisfy_symbol_count?(str)
