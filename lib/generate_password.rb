@@ -22,12 +22,12 @@ class Password
   private
 
   def pick_one(len, n)
-    char_list = usable_symbol?(len, n) ? CHAR_LIST : CHAR_LIST + SYMBOL_LIST
+    char_list = unusable_symbol?(len, n) ? CHAR_LIST : CHAR_LIST + SYMBOL_LIST
     random_index = (SecureRandom.random_number(1.0) * char_list.size).floor
     char_list[random_index]
   end
 
-  def usable_symbol?(len, n)
+  def unusable_symbol?(len, n)
     !@symbol_use || (n.zero? || n == len - 1)
   end
 
