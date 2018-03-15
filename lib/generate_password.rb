@@ -4,14 +4,15 @@ class Password
   CHAR_LIST = 'abcdefghijklmnpqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ123456789'.chars.freeze    # omit o,O,0
   SYMBOL_LIST = '._-=[]{}+#^!?'.chars.freeze
 
-  def initialize(symbol: false)
-    @symbol = symbol
+  def self.generate(symbol: false, length: 8)
+    self.new.generate(symbol, length)
   end
 
-  def generate(len = 8)
+  def generate(symbol, len)
     raise 'too short' if len < 4
     raise 'too long'  if len > 32
 
+    @symbol = symbol
     loop do
       password = len.times.map { |n| pick_one(len, n) }.join
       return password if check(password)

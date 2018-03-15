@@ -4,8 +4,8 @@ require_relative '../lib/generate_password'
 class TestGeneratePassword < Minitest::Test
   SYMBOL_LIST = '._-=[]{}+#^!?'.chars.freeze
   def setup
-    @password = Password.new.generate(16)
-    @symbol_password = Password.new(symbol: true).generate(16)
+    @password = Password.generate(length: 16)
+    @symbol_password = Password.generate(symbol: true, length: 16)
   end
 
   # 長さが32文字以下
