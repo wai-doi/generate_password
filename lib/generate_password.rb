@@ -1,8 +1,8 @@
 class Password
   require 'securerandom'
 
-  CHAR_LIST = 'abcdefghijklmnpqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ123456789'.split('').freeze    # omit o,O,0
-  SYMBOL_LIST = '._-=[]{}+#^!?'.split('').freeze
+  CHAR_LIST = 'abcdefghijklmnpqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ123456789'.chars.freeze    # omit o,O,0
+  SYMBOL_LIST = '._-=[]{}+#^!?'.chars.freeze
   SYMBOL_LIST_ESCAPED = SYMBOL_LIST.reduce('') { |r, s| r + '\\' + s }.freeze
 
   def initialize(symbol: false)
