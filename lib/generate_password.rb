@@ -35,10 +35,11 @@ class Password
     return false if /(.)\1\1/ =~ str
 
     # confirm the str contains 1..2 symbols
-    if @symbol
-      return false unless [1, 2].include?(count_symbol(str))
-    end
-    true
+    @symbol ? symbol_count_check(str) : true
+  end
+
+  def symbol_count_check(str)
+    [1, 2].include?(count_symbol(str))
   end
 
   def count_symbol(str)
