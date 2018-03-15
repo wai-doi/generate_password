@@ -13,8 +13,8 @@ class Password
     raise 'too long'  if len > 32
 
     loop do
-      result = len.times.map { |n| pick_one(len, n) }.join
-      return result if check(result)
+      password = len.times.map { |n| pick_one(len, n) }.join
+      return password if check(password)
     end
   end
 
