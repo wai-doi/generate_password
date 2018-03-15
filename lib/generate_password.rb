@@ -21,13 +21,8 @@ class Password
   private
 
   def pick_one(len, n)
-    list = char_list(len, n)
-
-    list[(SecureRandom.random_number(1.0) * list.size).floor]
-  end
-
-  def char_list(len, n)
-    usable_symbol?(len, n) ? CHAR_LIST : CHAR_LIST + SYMBOL_LIST
+    char_list = usable_symbol?(len, n) ? CHAR_LIST : CHAR_LIST + SYMBOL_LIST
+    char_list[(SecureRandom.random_number(1.0) * char_list.size).floor]
   end
 
   def usable_symbol?(len, n)
