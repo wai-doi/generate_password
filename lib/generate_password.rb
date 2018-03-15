@@ -13,7 +13,7 @@ class Password
     raise 'too long'  if len > 32
 
     loop do
-      result = (0..len - 1).reduce('') { |r, n| r + pick_one(len, n) }
+      result = len.times.map { |n| pick_one(len, n) }.join
       return result if check(result)
     end
   end
