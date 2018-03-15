@@ -31,20 +31,19 @@ class Password
     !@symbol || (n.zero? || n == len - 1) ? CHAR_LIST : CHAR_LIST + SYMBOL_LIST
   end
 
-  def count_symbol(str)
-    str.scan(Regexp.new('[%s]' % SYMBOL_LIST_ESCAPED)).size
-  end
-
   def check(str)
     # omit successive chars
     return false if /(.)\1\1/ =~ str
 
     # confirm the str contains 1..2 symbols
-    if @symbol
-      return false if count_symbol(str).zero?
-      return false if count_symbol(str) > 2
+    if @symbol 
+      return false unless [1, 2].include?(count_symbol(str))
     end
-
     true
   end
+
+  def count_symbol(str)
+    str.scan(Regexp.new('[%s]' % SYMBOL_LIST_ESCAPED)).size
+  end
+
 end
