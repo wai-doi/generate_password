@@ -3,7 +3,6 @@ class Password
 
   CHAR_LIST = 'abcdefghijklmnpqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ123456789'.chars.freeze    # omit o,O,0
   SYMBOL_LIST = '._-=[]{}+#^!?'.chars.freeze
-  SYMBOL_LIST_ESCAPED = SYMBOL_LIST.reduce('') { |r, s| r + '\\' + s }.freeze
 
   def initialize(symbol: false)
     @symbol = symbol
@@ -36,14 +35,14 @@ class Password
     return false if /(.)\1\1/ =~ str
 
     # confirm the str contains 1..2 symbols
-    if @symbol 
+    if @symbol
       return false unless [1, 2].include?(count_symbol(str))
     end
     true
   end
 
   def count_symbol(str)
-    str.scan(Regexp.new('[%s]' % SYMBOL_LIST_ESCAPED)).size
+    str.scan(Regexp.union(SYMBOL_LIST)).size
   end
 
 end
