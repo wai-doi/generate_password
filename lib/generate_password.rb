@@ -27,7 +27,11 @@ class Password
   end
 
   def char_list(len, n)
-    !@symbol || (n.zero? || n == len - 1) ? CHAR_LIST : CHAR_LIST + SYMBOL_LIST
+    usable_symbol?(len, n) ? CHAR_LIST : CHAR_LIST + SYMBOL_LIST
+  end
+
+  def usable_symbol?(len, n)
+    !@symbol || (n.zero? || n == len - 1)
   end
 
   def check(str)
