@@ -22,8 +22,8 @@ class TestGeneratePassword < Minitest::Test
 
   # 3文字以上連続しない
   def test_sequence
-    refute @password =~ /(.)\1{3,}/
-    refute @symbol_password =~ /(.)\1{3,}/
+    refute @password =~ /(.)\1{2,}/
+    refute @symbol_password =~ /(.)\1{2,}/
   end
 
   # オプションをつけた場合には1、2こ記号を使う
